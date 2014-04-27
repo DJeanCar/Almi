@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+
+{% block style %}
+	<link rel="stylesheet" href="{{STATIC_URL}}css/contactanos.css">
+	<style>
+		.listado-paquetes{
+			box-sizing: border-box;
+			width: 33.33333%;
+			float: left;
+			padding: 0.5em;
+		}
+
+		.contenido-paquete{
+			width: 100%;
+			background-color: rgba(255, 255, 0, 0.15);
+		}
+
+		h3{
+			margin: 0;
+			text-align: center;
+			background-color: rgb(248, 227, 68);
+			padding: 0.2em 0;
+		}
+
+		.descripcion-paquete{
+			
+			color: rgba(0, 0, 0, 0.5);
+			margin: 0.5em;
+			text-align: justify;
+		}
+
+		.imagen img{
+			width: 100%;
+		}
+
+		.menu-user{
+			top: 73px;
+		}
+
+		/*nuevo reporte de paquetes*/
+
+		.contenedor-paquetes{
+			overflow: hidden;
+			margin-bottom: 1em;
+		}
+
+		.contenedor-izquierda, .contenedor-derecha{
+			float: left;
+			padding: 1em;
+			box-sizing: border-box;
+
+
+		}
+
+		.contenedor-izquierda{
+			width: 30%;
+			padding-right: 0.5em;
+
+		}
+
+		.contenedor-derecha{
+			width: 70%;
+			padding-left: 0.5em;
+			
+		}
+
+		.dentro-derecha, .dentro-izquierda{
+			padding: 1em;
+			box-sizing: border-box;
+			border: 1px solid rgb(230, 205, 205);
+			border-radius: 3px;
+		}
+
+		.dentro-derecha{
+			overflow: hidden;
+			padding: 0.5em;
+		}
+
+		.grupo-busqueda{
+			margin-bottom: 1em;
+		}
+
+		.paquete-item{
+			box-sizing: border-box;
+			width: 50%;
+			float: left;
+			padding: 0.5em;
+		}
+
+		.contenido-paquete-item{
+			border: 1px solid rgb(230, 205, 205);
+			padding: 0.5em;
+			border-radius: 3px;
+			overflow: hidden;
+		}
+
+		.contenido-paquete-item:hover{
+			background-color: rgb(147, 255, 190);
+			cursor: pointer;
+		}
+
+		.img-paquete, .texto-paquete{
+			float: left;
+		}
+
+		.texto-paquete{
+			width: 50%;
+			box-sizing: border-box;
+		}
+
+		.precio-paquete{
+			background-color: rgba(149, 185, 36, 0.67);
+			padding: 0.5em;
+			color: white;
+			font-weight: bold;
+		}
+
+		.conten-paquete{
+			background-color: rgba(220, 230, 9, 0.37);
+			padding: 0.3em;
+		}
+
+		.tour-paq{
+			background-color: rgba(149, 185, 36, 0.67);
+			padding: 0.3em;
+			float: left;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		.l{
+			background-color: #A89C62;
+			margin-left: 0.1em;
+			padding: 0 0.2em;
+			color: white;
+			border-radius: 	3px;
+		}
+
+	</style>
+{% endblock %}
+
+{% block titulo_empresa %} <a href="/"><span class="super-titulo">ALMI</span></a> {% endblock %}
+
+{% block content %}
+	<div class="contenedor" style="overflow:hidden">
+		<div class="titulo-form"><h2>Nuestros Paquetes Turísticos<span class="icon-map"></span></h2></div>
+
+		<div class="listado">
+
+			<div class="contenedor-paquetes">
+				<div class="contenedor-izquierda">
+
+					<div class="dentro-izquierda">
+						<p><b>Buscar Paquetes:</b></p>
+						<div class="grupo-busqueda">
+							<label >Por Lugar:</label>
+							<select id="selector-lugar">
+								{% for lugar in lugares %}
+								<option id="{{lugar.id}}">{{lugar.nombre}}</option>
+								{% endfor %}								
+							</select>
+						</div>
+						<!--<div class="grupo-busqueda">
+							<label >Por Precio:</label>
+							<select name=" " id="">
+								<option value="">s/. 50.00 - s/. 100.00</option>
+								<option value="">s/. 100.00 - s/. 150.00</option>
+							</select>
+						</div>	-->					
+					</div>
+				</div>
+				<div class="contenedor-derecha">
+					<div class="dentro-derecha">
+						{% for paquete in paquetes %}
+						<div class="paquete-item">
+							<div class="contenido-paquete-item" id="{{paquete.id}}">
+								<img src="{{MEDIA_URL}}{{paquete.imagen}}" width="50%" class="img-paquete">
+								<div class="texto-paquete">
+									<div class="precio-paquete">
+										<span>S/. {{paquete.precio}} x persona</span>
+									</div>
+									<div class="conten-paquete">
+										<b>{{paquete.nombre}}</b><br>
+										<small>{{paquete.descripcion|truncatewords:"15"}}</small><br>
+										
+									</div>
+								</div>
+								<div class="tour-paq">
+									Tour:
+
+									{% for lugar in paquete.lugar.all %}
+								  	<span class="l">{{lugar.nombre}}</span>
+								  	{% endfor %}
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						
+					</div>
+				</div>
+			</div>
+
+			<!--
+
+			{% for paquete in paquetes %}
+				<div class="listado-paquetes">
+					<div class="contenido-paquete">
+						<h3>{{paquete.nombre}} </h3>
+						<p class="descripcion-paquete">{{paquete.descripcion|truncatewords:"48"}}</p>
+						<div class="imagen">
+							<img src="{{MEDIA_URL}}{{paquete.imagen}}" alt="">
+						</div>
+					</div>
+				</div>
+			{% endfor %}-->
+		</div>
+		
+		
+
+	</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+	$('#selector-lugar').on('change', inicio);
+
+	function inicio(){
+		var valorBusquedaLugar = $('#selector-lugar').val();
+		//$('.item-lugar').hide();
+		$.ajax({
+			data: {'valor': valorBusquedaLugar},
+			url: '/paquete/busqueda_ajax/',
+			type: 'get',
+			//success: function(data){
+			//	console.log('hola');
+			//}
+		});
+	}
+
+
+	//---------------------------------
+	$()
+</script>
+{% endblock %}
+
+
+	
+
+

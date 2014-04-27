@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<link rel="icon" type="image/png" href="{{STATIC_URL}}img/af.png">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=100px, initial-scale=1, maximum-scale=1">
+	<title>Turefull</title>
+	<link rel="stylesheet" href="{{STATIC_URL}}css/normalize.css">
+	<link rel="stylesheet" href="{{STATIC_URL}}css/estilos.css">
+	<link rel="stylesheet" href="{{STATIC_URL}}css/media-queries.css">
+	<link rel="stylesheet" href="{{STATIC_URL}}css/style.css">
+
+	{% block style %}
+	{% endblock %}
+</head>
+
+<body>
+		
+		{% block nav %}
+		{% endblock %}
+		
+		{% block header %}
+		{% endblock %}
+
+		<nav id="nav-principal">
+
+			<ul class="navbar">
+				{% block titulo_empresa %} {% endblock %}
+				<a href="/"><li>Inicio&nbsp;&nbsp;&nbsp;<span class="icon-home"></span></li></a>
+				<a href="/paquete/mostrar/"><li>Paquetes</li></a>
+				<a href="/lugar/mostrar/"><li>Lugares</li></a>
+				<a href="/contactanos/"><li>Contáctanos</li></a>
+				<!--<li class="user">
+				{% if user.is_authenticated %}
+				{{user.username|capfirst}}
+				<img src="{{STATIC_URL}}img/mancorados.jpg" width="30px" height="30px">
+			    {%endif%}
+			    </li>-->
+			</ul>
+			
+
+		</nav>
+	
+		{% block content %}
+		{% endblock %}
+
+		<div class="super-footer">
+				<ul>
+					<li><span class="icon-earth"></span>Ubícanos en: Av. Piura 517 – Máncora. Referencia: Al costado de OLTURSA-MANCORA.</li>
+					<li><span class="icon-phone"></span>Llámanos al: RPM #954414825 – Fijo 073258299</li>
+				</ul>
+		</div>
+		<footer>
+			Desarrollado por <a href="https://twitter.com/jhonazsh"><div class="twitter-personal"><span class="icon-twitter"></span>@Jhonazsh</div></a>
+		</footer>
+		
+		<!-- Parte del Modal -->
+
+
+
+		<!-- /////////////// -->
+	
+
+	<!-- Sección de Script -->
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="{{STATIC_URL}}js/jquery-1.10.1.min.js"></script>
+	<script src="{{STATIC_URL}}js/principal.js"></script>
+	{% block js %}
+	{% endblock %}
+</body>
+</html>
