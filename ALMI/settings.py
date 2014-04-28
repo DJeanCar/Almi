@@ -103,6 +103,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR.child('static')] 
+STATIC_ROOT = 'staticfiles'
 
 MEDIA_URL = 'http://localhost:8000/media/'
 MEDIA_ROOT = BASE_DIR.child('media')

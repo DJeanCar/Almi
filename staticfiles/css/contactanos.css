@@ -1,0 +1,49 @@
+
+.filiform{
+	margin: 0.5em;
+	width: 100%;
+	float: left;
+}
+
+.labelsito{
+	margin-right: 10px;
+	width: 10%;
+	padding-top: 0.4em;
+}
+
+.labelsito, input, textarea{
+	float: left;
+}
+
+.contenedor-form{
+	padding: 10px 3%;
+	padding-bottom: 30%;
+}
+
+.texto-input{
+	height: 30px;
+	border-radius: 3px;
+	border: 1px solid rgba(155, 150, 194, 0.46);
+	width: 160px;
+}
+textarea{
+	border-radius: 3px;
+	border: 1px solid rgba(155, 150, 194, 0.46);
+}
+
+
+.titulo-form h2{
+	box-sizing: border-box;
+	padding: 10px 3%;
+	background-color: rgba(218, 248, 181, 0.83);
+border: 1px solid rgba(67, 247, 175, 0.27);
+	color: #7AA87E;
+}
+
+.icon-envelope, .icon-compass, .icon-map{
+	color: rgb(167, 167, 170);
+	float: right;
+	font-size: 1.2em;
+}
+
+
