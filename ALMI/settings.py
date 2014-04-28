@@ -59,13 +59,27 @@ WSGI_APPLICATION = 'ALMI.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
+# LOCAL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'almi',
+#         'USER': 'jhonazsh',
+#         'PASSWORD': 'medina11',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
+
+#heroku
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'almi',
-        'USER': 'jhonazsh',
-        'PASSWORD': 'medina11',
-        'HOST': 'localhost',
+        'NAME': 'del3h72ok42pka',
+        'USER': 'xtbhoxuqarrjvw',
+        'PASSWORD': 'kXvAwXHBRh406tmswkIKxpxCVJ',
+        'HOST': 'ec2-54-225-182-133.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
