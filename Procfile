@@ -1,1 +1,1 @@
-web: gunicorn SistemaDiscusiones.wsgi
+web: gunicorn ALMI.wsgi
