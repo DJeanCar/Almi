@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+<nav id="super-nav">
+	<a href="/"><span class="super-titulo">ALMI</span></a>
+	<!--{% if user.is_authenticated %}
+	{%else%}
+	<span id="ingresar"> Ingresar</span>
+	{%endif%}-->
+	<a href="https://www.facebook.com/pages/Adventure-Full/547132822017780?ref=hl" title="Facebook"><span class="super-redes-sociales">Síguenos en <span class="icon-facebook pro"></span></span></a>
+	<a href="https://www.facebook.com/pages/Adventure-Full/547132822017780?ref=hl" title="Twitter"><span class="super-redes-sociales">Síguenos en <span class="icon-twitter pro"></span></span></a>
+</nav>
+
+{% endblock %}
+		
+{% block header %}
+<header>
+	<h1>Agencia de Viajes y Turismo ALMI</h1>
+			
+	<div class="sub-titulo">
+		<span>
+			Siente el placer de poder relacionarte con la naturaleza teniendo la mejor experiencia en tu viaje, y sobre todo satisfacer a tu espíritu aventurero. 
+		</span>
+	</div>
+</header>
+
+{% endblock %}
+
+
+{% block content %}
+
+	<div class="contenedor">
+			<!--
+			<div class="contenedor-video-texto">
+				<div class="contenedor-falso">
+					<div class="texto-video">
+						sldkfslf asldkfsldkfj asldfj lskdfj
+						dgsdgsdgsfsf sdf sf sdf sf s kjaskd ahsdjkahsd asd jfhsf asf askdjfhaskjdfhskjadfhjkasdh fjkashdfksa dhfjkashd fkjasdhfkjas
+						sdfasdfasdfasdfsdf sdf sd fsd f sf sdf sd fs dfsdfs dfs df sdf sdf
+						sdfsd fs df sdfs df sdf sd fs df sdf sdf  sdfs df sdf sdfs df sd fsdf
+						sdfsdfs df sdf s df sdf s df sdf sd f sdf sd fs dfsdfsdfsdf sdf sd fsdf
+						sdfs df sdf sd fsdfsdfs dfs dfs dfsdf 
+					</div>
+					<div class="seccion-video">
+						<div class="video">
+							<iframe src="https://www.youtube.com/embed/TcUHPinUzDo" frameborder="0"></iframe>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			-->
+			
+			<div class="seccion-slider">
+				<div class="banner">
+				    <ul>
+				        <li><div class="item-slider">... Te ofrecemos el mejor tour a los Manglares de Tumbes y pasar una dia de full aventura ...</div></li>
+						<li><div class="item-slider">... Puedes tener una experiencia extraordinaria, conociendo el Ñuro y las impresionantes Tortugas Marinas que se encuentran en sus aguas ...</div></li>
+						<li><div class="item-slider">... Ven y pasala genial en Máncora y todos sus alrededores ...</div></li>
+				    </ul>
+				</div>
+			</div>
+			<section class="seccion-post">
+			
+				{% for paquete in paquetes %}
+				<article>
+					<h2 style="margin-bottom: -15px;">{{paquete.nombre}}</h2>
+					<p class="descripcion">
+						{{paquete.descripcion}}
+					</p>
+					<p class="tour">
+						<ul id="item-group-tour">
+							<span class="to"><b>Tours:</b>&nbsp;&nbsp;&nbsp;</span>
+							{% for lugar in paquete.lugar.all %}
+						  	<li class="item-tour">{{lugar.nombre}}</li>
+						  	{% endfor %}
+						</ul>			
+					</p>
+					<figure class="imagencita">
+						<img src="{{MEDIA_URL}}{{paquete.imagen}}" alt="">
+						<div class="precio"><span class="icon-tag"></span>A solo <span>S/. {{paquete.precio}}</span></div>
+					</figure>
+				</article>
+				{% endfor %}
+				
+			</section>
+
+			<aside>
+				<p class="lug">Lugares por conocer:</p>
+				
+				{% for lugar in lugares %}
+				<div class="relleno">
+					<div class="grupi">
+						<figure>
+							<img src="{{MEDIA_URL}}{{lugar.imagen}}" alt="">
+							<div class="nombre-lugar">{{lugar.nombre}}</div>
+						</figure>
+						<div class="des" id="{{lugar.id}}">
+							{{lugar.descripcion|truncatewords:"56"}}
+							<span id="ver-lugar">ver mas</span>
+						</div>
+					</div>
+					
+				</div>
+				{% endfor %}
+
+				<!--<p class="lug lug2">Lugares por conocer:</p>
+				
+				{% for lugar in lugares %}
+				<div class="relleno">
+					<div class="grupi">
+						<figure>
+							<img src="{{MEDIA_URL}}{{lugar.imagen}}" alt="">
+							<div class="nombre-lugar">{{lugar.nombre}}</div>
+						</figure>
+						<div class="des" id="{{lugar.id}}">
+							{{lugar.descripcion|truncatewords:"56"}}
+							<span id="ver-lugar">ver mas</span>
+						</div>
+					</div>
+					
+				</div>
+				{% endfor %}-->
+				
+			</aside>
+
+		</div>
+		
+
+		<p></p>
+
+		{% endblock %}
+
+{% block js %}
+
+<script src="//unslider.com/unslider.min.js"></script>
+<script>
+	$(function() {
+	    $('.banner').unslider();
+	});
+
+	/*var altoTexto = $('.contenedor-video-texto').height();
+	$('.texto-video').css({
+		'height': altoTexto+'px'
+	});*/
+</script>
+
+{% endblock %}

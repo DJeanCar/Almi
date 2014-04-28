@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block style %}
+	<link rel="stylesheet" href="{{STATIC_URL}}css/contactanos.css">
+	<style>
+		.item-lugar-cover{
+			width: 100%;
+			padding: 0.5em;
+			box-sizing: border-box;
+		}
+
+		.item-lugar{
+			background-color: rgba(220, 230, 9, 0.37);
+			width: 100%;
+			overflow: hidden;
+			margin-bottom: 1em;
+			color: #857A7A;
+			border-radius: 3px;
+			border: 1px solid rgba(211, 211, 175, 0.27);
+		}
+
+		.item-imagen{
+			width: 20%
+		}
+
+		.item-imagen img{
+			width: 100%;
+		}
+
+		.item-imagen, .item-contenido{
+			float: left;
+		}
+
+		.item-contenido{
+			padding: 1em;
+			box-sizing: border-box;
+			width: 80%;
+		}
+
+		.titulo-item-contenido, .info-item-contenido{
+			float: left;
+		}
+
+		.titulo-item-contenido{
+			padding-bottom: 0.5em;
+			border-bottom: 1px solid rgb(236, 100, 100);
+			width: 100%;
+		}
+
+		.info-item-contenido{
+			padding-top: 0.5em;
+		}
+
+		.menu-user{
+			top: 73px;
+		}
+	</style>
+{% endblock %}
+
+{% block titulo_empresa %} <a href="/"><span class="super-titulo">ALMI</span></a> {% endblock %}
+
+{% block content %}
+	<div class="contenedor">
+		<div class="titulo-form"><h2>Lugares por Conocer<span class="icon-compass"></span></h2></div>
+		<div class="listado">
+			<div class="item-lugar-cover">
+				{% for lugar in lugares %}
+				<div class="item-lugar">
+					<div class="item-imagen">
+						<img src="{{MEDIA_URL}}{{lugar.imagen}}">
+					</div>
+					<div class="item-contenido">
+						<div class="titulo-item-contenido"><b>{{lugar.nombre}}</b></div>
+						<div class="info-item-contenido">
+							{{lugar.descripcion}}
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block js %}
+
+<script>
+	$('#buscar').on('click', inicio);
+
+	function inicio(){
+		var valorBusquedaLugar = $('#valor-busqueda').val();
+		//$('.item-lugar').hide();
+		$.ajax({
+			data: {'valor': valorBusquedaLugar},
+			url: '/lugar/busqueda_ajax/',
+			type: 'get',
+			success: function(data){
+				var html = "";
+				for(var i=0; i<data.length; i++){
+					html+='<div class="item-lugar"><div class="item-imagen"><img src="{{MEDIA_URL}}'+data[i].fields.imagen+'"></div><div class="item-contenido"><div class="titulo-item-contenido"><b>'+data[i].fields.nombre+'</b></div><div class="info-item-contenido">'+data[i].fields.descripcion+'</div></div></div>';
+				}
+
+				$('.item-lugar-cover').html(html);
+			}
+		});
+	}
+
+</script>
+
+{% endblock%}

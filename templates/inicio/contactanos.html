@@ -1,0 +1,51 @@
+{% extends 'base.html'%}
+
+{% block style %}
+
+<link rel="stylesheet" href="{{STATIC_URL}}css/contactanos.css">
+<style>
+	.menu-user{
+			top: 73px;
+		}
+</style>
+
+{% endblock %}
+
+{% block titulo_empresa %} <a href="/"><span class="super-titulo">ALMI</span></a> {% endblock %}
+
+{% block content %}
+
+<div class="contenedor">
+			<div class="titulo-form"><h2>Envíanos un Mensaje<span class="icon-envelope"></span></h2></div>
+			<p style="text-align:justify">A través del siguiente formulario, puedes contactarnos para solicitar información, se te responderá a la brevedad posible y estaremos muy gustosos de brindarte el mejor servicio.</p>
+			<div class="contenedor-form">
+				<form action="envio.php" method="POST">
+					<div class="filiform">
+						<div class="labelsito">Nombre:</div>
+						<input type="text" placeholder=" Nombre" class="texto-input" name="nombre">
+					</div>
+
+					<div class="filiform">
+						<div class="labelsito">Apellido:</div>
+						<input type="text" placeholder=" Apellido" class="texto-input" name="apellido">
+					</div>
+					
+					<div class="filiform">
+						<div class="labelsito">E-Mail:</div>
+						<input type="email" placeholder=" E-Mail" class="texto-input" name="email">
+					</div>
+					
+					<div class="filiform">
+						<div class="labelsito">Mensaje:</div>
+						<textarea COLS=40 ROWS=6 name="mensaje"></textarea>
+					</div>
+					
+					<div class="filiform">
+						<input type="submit" value="Enviar">
+					</div>
+				</form>
+			</div>
+			
+		</div>
+
+{% endblock %}
